@@ -72,7 +72,7 @@
 
 	    //修改
 	    $("#edit").click(function(){
-	    	var selectRows = $("#dataList").datagrid("getSelections");
+	    	let selectRows = $("#dataList").datagrid("getSelections");
         	if(selectRows.length != 1){
             	$.messager.alert("消息提醒", "请选择一条数据进行操作!", "warning");
             } else{
@@ -121,25 +121,7 @@
             	});
             }
 	    });
-	  	
-	  	function preLoadClazz(){
-	  		$("#clazzList").combobox({
-		  		width: "150",
-		  		height: "25",
-		  		valueField: "id",
-		  		textField: "name",
-		  		multiple: false, //可多选
-		  		editable: false, //不可编辑
-		  		method: "post",
-		  		url: "ClazzServlet?method=getClazzList&t="+new Date().getTime()+"&from=combox",
-		  		onChange: function(newValue, oldValue){
-		  			//加载班级下的学生
-		  			//$('#dataList').datagrid("options").queryParams = {clazzid: newValue};
-		  			//$('#dataList').datagrid("reload");
-		  		}
-		  	});
-	  	}
-	  	
+
 	  	//下拉框通用属性
 	  	$("#add_clazzList, #edit_clazzList").combobox({
 	  		width: "200",
@@ -254,7 +236,7 @@
 					plain: true,
 					iconCls:'icon-user_add',
 					handler:function(){
-						var validate = $("#editForm").form("validate");
+						let validate = $("#editForm").form("validate");
 						if(!validate){
 							$.messager.alert("消息提醒","请检查你输入的数据!","warning");
 							return;
@@ -303,13 +285,7 @@
 				}
 			],
 			onBeforeOpen: function(){
-				var selectRow = $("#dataList").datagrid("getSelected");
-				var userType = "管理员";
-				if (selectRow.userType == 2){
-					userType = "学生";
-				}else if (selectRow.userType == 3){
-					userType = "教师";
-				}
+				let selectRow = $("#dataList").datagrid("getSelected");
 				//设置值
 				$("#edit_id").textbox('setValue', selectRow.id);
 				$("#edit_username").textbox('setValue', selectRow.username);
@@ -317,7 +293,7 @@
 				$("#edit_password").textbox('setValue', selectRow.password);
 				$("#edit_userType").combobox('setValue',selectRow.userType);
 				$("#edit_mobile").textbox('setValue',selectRow.mobile);
-				$("#edit_reputation").combobox('setValue',selectRow.reputation);
+				$("#edit_reputation").textbox('setValue',selectRow.reputation);
 			}
 	    });
 

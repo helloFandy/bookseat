@@ -251,7 +251,7 @@
 					formatter: function(value,row,index){
 						var html = "";
 
-						html += '<a href="#" class="btn-operate" onclick="showContent(' + row.content + ',3)" style="margin-right:10px;">查看内容</a>'
+						html += "<a href='#' class='btn-operate' onclick='showContent(\""+row.content+"\")' style='margin-right:10px;'>查看内容</a>";
 
 						return html;
 					}
@@ -261,7 +261,7 @@
 		});
 
 		//设置分页控件
-		var p = $('#dataList').datagrid('getPager');
+		let p = $('#dataList').datagrid('getPager');
 		$(p).pagination({
 			pageSize: 10,//每页显示的记录条数，默认为10
 			pageList: [10,20,30,50,100],//可以设置每页记录条数的列表

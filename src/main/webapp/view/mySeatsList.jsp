@@ -50,7 +50,7 @@
 	function initTable(){
 		//datagrid初始化
 		$('#dataList').datagrid({
-			title:'自习室预定列表',
+			title:'我的座位列表',
 			iconCls:'icon-more',//图标
 			border: true,
 			collapsible: false,//是否可折叠的
@@ -93,18 +93,23 @@
 				},
 				{field:'opertion',title:'操作',width:100, align: 'center',
 					formatter: function(value,row,index){
-						var html = "";
+						let html = "";
+						let curTime = new Date().getTime();
+						let startTime = new Date(row.startTime).getTime();
+						let endTime = new Date(row.endTime).getTime();
 						if (row.status == 1){
 							//签到时间要在开始、结束时间之内
-							let curTime = new Date().getTime();
-							let startTime = new Date(row.startTime).getTime();
-							let endTime = new Date(row.endTime).getTime();
 							if (curTime >=startTime && curTime <= endTime){
 								html += '<a href="#" class="btn-operate" onclick="edit(' + row.id + ',2)" style="margin-right:10px;">签到</a>';
 							}
+							if (curTime <= endTime){
+								html += '<a href="#" class="btn-operate" onclick="edit(' + row.id + ',3)" style="margin-right:10px;">释放</a>'
+							}
 						}
-						if (row.status == 1 || row.status == 2) {
-							html += '<a href="#" class="btn-operate" onclick="edit(' + row.id + ',3)" style="margin-right:10px;">释放</a>'
+						if (row.status == 2) {
+							if (curTime <= endTime){
+								html += '<a href="#" class="btn-operate" onclick="edit(' + row.id + ',3)" style="margin-right:10px;">释放</a>'
+							}
 						}
 						return html;
 					}

@@ -51,7 +51,7 @@
 	function initTable(){
 		//datagrid初始化
 		$('#dataList').datagrid({
-			title:'自习室预定列表',
+			title:'我的选座列表',
 			iconCls:'icon-more',//图标
 			border: true,
 			collapsible: false,//是否可折叠的

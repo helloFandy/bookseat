@@ -164,8 +164,6 @@
 
 	  	//搜索按钮监听事件
 	  	$("#search-btn").click(function(){
-			  console.log($('#search_name').val());
-			  console.log($("#search_isEnable").combobox('getValue'));
 	  		$('#dataList').datagrid('load',{
 	  			name: $('#search_name').val(),
 	  			isEnable: $("#search_isEnable").combobox('getValue')
@@ -287,7 +285,7 @@
 		<div style="float: left; margin-right: 10px;"><a id="delete" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-some-delete',plain:true">删除</a></div>
 	</c:if>
 		<div style="margin-top: 3px;">
-			自习室名称：<input id="searc_name" class="easyui-textbox" name="name" />
+			自习室名称：<input id="search_name" class="easyui-textbox" name="name" />
 			是否可用：
 				<select id="search_isEnable" class="easyui-combobox" data-options="editable: true, panelHeight: 100, width: 100, height: 30" name="isEnable">
 					<option></option>
