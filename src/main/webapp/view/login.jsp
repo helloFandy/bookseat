@@ -59,8 +59,32 @@
 
       //注册
       $("#register").click(function(){
+        let username = $("#regiUsername").val();
+        let name = $("#regiName").val();
         let password = $("#regiPassword").val();
+        let userType = $("#regiUserType").val();
+        let mobile = $("#mobile").val();
         let passwordConfirm = $("#regiPasswordConfirm").val();
+        if(username == ''){
+          $.messager.alert("消息提醒","用户名不能为空","warning");
+          return;
+        }
+        if(name == ''){
+          $.messager.alert("消息提醒","姓名不能为空","warning");
+          return;
+        }
+        if(password == ''){
+          $.messager.alert("消息提醒","密码不能为空","warning");
+          return;
+        }
+        if(userType == ''){
+          $.messager.alert("消息提醒","类型不能为空","warning");
+          return;
+        }
+        if(mobile == ''){
+          $.messager.alert("消息提醒","手机号不能为空","warning");
+          return;
+        }
         if(password != passwordConfirm){
           $.messager.alert("消息提醒","两次密码不一致","warning");
           return;
@@ -79,6 +103,7 @@
             if("loginSuccess" == msg){
               window.location.href = "SystemServlet?method=toAdminView";
             } else{
+              console.log(msg);
               alert(msg);
             }
           }
@@ -138,37 +163,37 @@
         <div class="row cl">
           <label class="form-label col-3"><i class="Hui-iconfont">账号</i></label>
           <div class="formControls col-8">
-            <input id="regiUsername" name="username" type="text" placeholder="账号" class="input-text size-L">
+            <input id="regiUsername" type="text" placeholder="账号" class="input-text size-L" data-options="required:true, missingMessage:'不能为空'">
           </div>
         </div>
         <div class="row cl">
           <label class="form-label col-3"><i class="Hui-iconfont">姓名</i></label>
           <div class="formControls col-8">
-            <input id="regiName" name="name" type="text" placeholder="姓名" class="input-text size-L">
+            <input id="regiName" type="text" placeholder="姓名" class="input-text size-L">
           </div>
         </div>
         <div class="row cl">
           <label class="form-label col-3"><i class="Hui-iconfont">密码</i></label>
           <div class="formControls col-8">
-            <input id="regiPassword" name="password" type="password" placeholder="密码" class="input-text size-L">
+            <input id="regiPassword" type="password" placeholder="密码" class="input-text size-L">
           </div>
         </div>
         <div class="row cl">
-          <label class="form-label col-3"><i class="Hui-iconfont">再次确认：</i></label>
+          <label class="form-label col-3"><i class="Hui-iconfont">确认密码：</i></label>
           <div class="formControls col-8">
-            <input id="regiPasswordConfirm" name="password" type="password" placeholder="再输一次密码" class="input-text size-L">
+            <input id="regiPasswordConfirm" type="password" placeholder="再输一次密码" class="input-text size-L">
           </div>
         </div>
         <div class="row cl">
           <label class="form-label col-3"><i class="Hui-iconfont">手机号</i></label>
           <div class="formControls col-8">
-            <input id="regiMobile" name="mobile" type="text" placeholder="手机号" class="input-text size-L">
+            <input id="regiMobile" type="text" placeholder="手机号" class="input-text size-L">
           </div>
         </div>
         <div class="row cl">
           <label class="form-label col-3"><i class="Hui-iconfont">类型</i></label>
           <div class="formControls col-8">
-            <select id="regiUserType" class="easyui-combobox" data-options="editable: true, panelHeight: 100, width: 100, height: 30" name="userType">
+            <select id="regiUserType" class="easyui-combobox" data-options="editable: true, panelHeight: 100, width: 100, height: 30">
               <option></option>
               <option value="2">学生</option>
               <option value="3">老师</option>

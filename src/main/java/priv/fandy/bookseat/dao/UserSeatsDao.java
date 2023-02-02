@@ -90,7 +90,7 @@ public class UserSeatsDao extends BaseDao {
 	 */
 	public List<UserSeatsDTO> getUserSeatsVisualizable(UserSeatsDTO dto){
 		List<UserSeatsDTO> ret = new ArrayList<>();
-		StringBuffer sql = new StringBuffer("SELECT rs.rid,rs.roomName,rs.sid,rs.rows,rs.cols,rs.room_id,us.start_time,us.end_time FROM ");
+		StringBuffer sql = new StringBuffer("SELECT rs.rid,rs.roomName,rs.sid,rs.rows,rs.cols,rs.room_id,us.start_time,us.end_time, us.status FROM ");
 		sql.append("(SELECT r.id AS rid,r.name AS roomName,s.id AS sid,s.rows,s.cols,s.room_id FROM b_room r ");
 		sql.append("LEFT JOIN b_seats s ON r.id = s.room_id ");
 		sql.append("WHERE s.is_deleted = 0 AND r.is_deleted = 0 AND r.is_enable = 1 ");
@@ -98,8 +98,8 @@ public class UserSeatsDao extends BaseDao {
 		sql.append(dto.getRoomId());
 		sql.append(") AS rs ");
 		sql.append("LEFT JOIN ");
-		sql.append("(SELECT seat_id, start_time, end_time FROM b_user_seats ");
-		sql.append("WHERE status in (1,2) and start_time <= ");
+		sql.append("(SELECT seat_id, start_time, end_time, status FROM b_user_seats ");
+		sql.append("WHERE status in (1,2) and (start_time <= ");
 		sql.append("'");
 		sql.append(dto.getStartDate());
 		sql.append("'");
@@ -123,7 +123,7 @@ public class UserSeatsDao extends BaseDao {
 		sql.append("'");
 		sql.append(dto.getEndDate());
 		sql.append("'");
-		sql.append(") AS us ON rs.sid = us.seat_id");
+		sql.append(")) AS us ON rs.sid = us.seat_id");
 		ResultSet resultSet = query(sql.toString());
 		try {
 			while(resultSet.next()){
@@ -136,6 +136,7 @@ public class UserSeatsDao extends BaseDao {
 				userSeatsDTO.setRoomId(resultSet.getInt("room_id"));
 				userSeatsDTO.setStartTime(resultSet.getDate("start_time"));
 				userSeatsDTO.setEndTime(resultSet.getDate("end_time"));
+				userSeatsDTO.setStatus(resultSet.getInt("status"));
 				ret.add(userSeatsDTO);
 			}
 		} catch (SQLException e) {

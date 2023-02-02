@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 		doPost(request, response);
 	}
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("UTF-8");
 		String oper = request.getParameter("oper");
 		if("logout".equals(oper)){
 			logout(request, response);

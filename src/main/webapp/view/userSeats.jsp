@@ -156,7 +156,7 @@
 	 */
 	function initSearchRoomSelected(){
 		$("#searchRoom").combobox({
-			url: "RoomServlet?oper=getRoomList&t="+new Date().getTime()+"&from=combox",
+			url: "RoomServlet?oper=getRoomList&t="+new Date().getTime()+"&from=combox&isEnable=1",
 			editable: true,
 			valueField: 'id',
 			textField: 'name',
@@ -302,7 +302,7 @@
 					for (let i = 0; i < data.length; i++) {
 						let rowsIndex = data[i].rows-1;
 						let colsIndx = data[i].cols-1;
-						if(data[i].startTime == null  || data[i].endTime == null){
+						if(data[i].startTime == null  || data[i].endTime == null || data[i].status == 3){
 							$("#seats"+rowsIndex.toString()+colsIndx.toString()).append(emptyImg);
 						}else{
 							$("#seats"+rowsIndex.toString()+colsIndx.toString()).append(busyImg);

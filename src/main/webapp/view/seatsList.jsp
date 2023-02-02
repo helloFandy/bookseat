@@ -15,7 +15,7 @@
 	$(function() {	
 		//datagrid初始化 
 	    $('#dataList').datagrid({ 
-	        title:'自习室列表', 
+	        title:'座位列表',
 	        iconCls:'icon-more',//图标 
 	        border: true, 
 	        collapsible: false,//是否可折叠的 
@@ -154,7 +154,7 @@
 
 		//新增操作会议室下拉
 		$("#add_room").combobox({
-			url: "RoomServlet?oper=getRoomList&t="+new Date().getTime()+"&from=combox",
+			url: "RoomServlet?oper=getRoomList&t="+new Date().getTime()+"&from=combox&isEnable=1",
 			editable: true,
 			valueField: 'id',
 			textField: 'name',
