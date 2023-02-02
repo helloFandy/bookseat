@@ -149,7 +149,7 @@ public class UserDao extends BaseDao{
 		if (dto.getUsername() != null){
 			sql.append("and username = ");
 			sql.append("'");
-			sql.append(dto.getId());
+			sql.append(dto.getUsername());
 			sql.append("'");
 		}
 		sql.append(" limit 0,1 ");

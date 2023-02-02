@@ -67,6 +67,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			UserDO userDO = new UserDO();
 			userDO.setName(name);
+			userDO.setUsername(username);
 			userDO.setPassword(password);
 			userDO.setUserType(userType);
 			userDO.setMobile(mobile);

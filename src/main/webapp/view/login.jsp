@@ -77,7 +77,7 @@
           $.messager.alert("消息提醒","密码不能为空","warning");
           return;
         }
-        if(userType == ''){
+        if(userType === null){
           $.messager.alert("消息提醒","类型不能为空","warning");
           return;
         }
