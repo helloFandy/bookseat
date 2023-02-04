@@ -153,7 +153,7 @@ public class UserSeatsDao extends BaseDao {
 	public List<UserSeatsDTO> getSeatOrUserInterSection(UserSeatsDTO dto){
 		List<UserSeatsDTO> ret = new ArrayList<>();
 		StringBuffer sql = new StringBuffer("SELECT seat_id, start_time, end_time FROM b_user_seats ");
-		sql.append("WHERE status in (1,2) and start_time <= ");
+		sql.append("WHERE status in (1,2) and (start_time <= ");
 		sql.append("'");
 		sql.append(dto.getStartDate());
 		sql.append("'");
@@ -176,14 +176,14 @@ public class UserSeatsDao extends BaseDao {
 		sql.append(" AND end_time <= ");
 		sql.append("'");
 		sql.append(dto.getEndDate());
-		sql.append("'");
+		sql.append("')");
 		sql.append(" AND seat_id = ");
 		sql.append(dto.getSeatId());
 
-		sql.append(" union all ");
+		sql.append(" union ");
 
 		sql.append("SELECT seat_id, start_time, end_time FROM b_user_seats ");
-		sql.append("WHERE status in (1,2) and start_time <= ");
+		sql.append("WHERE status in (1,2) and (start_time <= ");
 		sql.append("'");
 		sql.append(dto.getStartDate());
 		sql.append("'");
@@ -206,7 +206,7 @@ public class UserSeatsDao extends BaseDao {
 		sql.append(" AND end_time <= ");
 		sql.append("'");
 		sql.append(dto.getEndDate());
-		sql.append("'");
+		sql.append("')");
 		sql.append(" AND user_id = ");
 		sql.append(dto.getUserId());
 
@@ -214,12 +214,6 @@ public class UserSeatsDao extends BaseDao {
 		try {
 			while(resultSet.next()){
 				UserSeatsDTO userSeatsDTO = new UserSeatsDTO();
-				userSeatsDTO.setRid(resultSet.getInt("rid"));
-				userSeatsDTO.setSid(resultSet.getInt("sid"));
-				userSeatsDTO.setRoomName(resultSet.getString("roomName"));
-				userSeatsDTO.setRows(resultSet.getString("rows"));
-				userSeatsDTO.setCols(resultSet.getString("cols"));
-				userSeatsDTO.setRoomId(resultSet.getInt("room_id"));
 				userSeatsDTO.setStartTime(resultSet.getDate("start_time"));
 				userSeatsDTO.setEndTime(resultSet.getDate("end_time"));
 				ret.add(userSeatsDTO);

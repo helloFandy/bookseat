@@ -75,8 +75,8 @@
 									//重新加载
 									$("#addRoom").combobox('setValue','');
 									$("#addRowsCols").combobox('clear');
-									$("#addStartTime").textbox('setValue','');
-									$("#addEndTime").textbox('setValue','');
+									//$("#addStartTime").textbox('setValue','');
+									//$("#addEndTime").textbox('setValue','');
 									//初始化页面表格
 									let data = $("#searchRoom").combobox("getData");
 									initTable(data[0].rows,data[0].cols);
